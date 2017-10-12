@@ -2,4 +2,5 @@
 
 - **Group**: 15
 
-See 'Team15_CSCI201L_Project/doc/README.txt' for details on what is still missing in this version of the project.
+This the work of five people!
+I implemented the server and the communication part, and did part of the client.
