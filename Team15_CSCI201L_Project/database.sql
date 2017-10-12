@@ -1,0 +1,36 @@
+DROP DATABASE IF EXISTS team15project;
+CREATE DATABASE team15project;
+USE team15project;
+
+CREATE TABLE users (
+	userID INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(25) NOT NULL UNIQUE,
+    `password` VARCHAR(25) COLLATE latin1_general_cs NOT NULL
+);
+
+CREATE TABLE classrooms (
+	classroomID INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    instructorID INT(11) UNSIGNED NOT NULL,
+    object BLOB NOT NULL,
+    deleted BOOLEAN NOT NULL DEFAULT FALSE,
+    
+    FOREIGN KEY fk1(instructorID) REFERENCES users(userID)
+);
+
+CREATE TABLE activities (
+	activityID INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    instructorID INT(11) UNSIGNED NOT NULL,
+    object BLOB NOT NULL,
+    deleted BOOLEAN NOT NULL DEFAULT FALSE,
+    
+    FOREIGN KEY fk1(instructorID) REFERENCES users(userID)
+);
+
+CREATE TABLE users_classrooms (
+	userID INT(11) UNSIGNED NOT NULL,
+    classroomID INT(11) UNSIGNED NOT NULL,
+    joined DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY fk1(userID) REFERENCES users(userID),
+    FOREIGN KEY fk2(classroomID) REFERENCES classrooms(classroomID)
+);
